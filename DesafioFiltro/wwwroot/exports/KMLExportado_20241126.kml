@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <Placemark>
+      <name>Ponto 167</name>
+      <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AEDAZkqsZbCxsQE1sUFocqQo9sAT_fHUDGo4nZ_dauVeLtm12d7ZGKu1Ppy01jQyIKsyWz71lD4jN6ebT_yFVeV-_NQtOEu_6yoSH0Qz0s8smwXjrDvwDYR5vcuVRtp8WcZ9Aa5JtAf8uGbHYKRaN7InJByDId51YdxnJiWreMAx9Uc_Ijn6_hxZMNSmMWqAoGAtdxItOCG52RRQ?authuser=0&fife=s16383" height="200" width="auto" /><br><br>RUA/CRUZAMENTO: AV. ADÉLIA FRANCO X AV. DEP. SÍLVIO TEIXEIRA<br>REFERENCIA: <br>BAIRRO: GRAGERU<br>SITUAÇÃO: <br>CLIENTE: REVEMAR<br>DATA: 03/02/2023<br>COORDENADAS: -10.9382666, -37.063042<br><br><img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AEDAZkoes6wAjPoSlCmySD5O7BljwrjoOvgdNn_SxsfWqROfl-_OGX5enniLMOqPBRzs9I4yvG1LhAijjaomVnEvHwJYlU-Esn25jQl-ac0BKTyoOmD2sgNQ5y0ia49GJ362cYn0Z_6VeOZ9AqHSyXLoa-zKVcVjFqkmft1TDhL4LPu1TcrRLZfqq7Fz77hzd5dJH6b8pICYUehq10sKGim5Ni5rH9IXpLMUnwfysinuJ7maeOHjG1KBjuy1mzs?authuser=0&fife=s16383" height="200" width="auto" />]]></description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <ExtendedData>
+        <Data name="RUA/CRUZAMENTO">
+          <value>AV. ADÉLIA FRANCO X AV. DEP. SÍLVIO TEIXEIRA</value>
+        </Data>
+        <Data name="REFERENCIA">
+          <value />
+        </Data>
+        <Data name="BAIRRO">
+          <value>GRAGERU</value>
+        </Data>
+        <Data name="SITUAÇÃO">
+          <value />
+        </Data>
+        <Data name="CLIENTE">
+          <value>REVEMAR</value>
+        </Data>
+        <Data name="DATA">
+          <value>03/02/2023</value>
+        </Data>
+        <Data name="COORDENADAS">
+          <value>-10.9382666, -37.063042</value>
+        </Data>
+        <Data name="gx_media_links">
+          <value><![CDATA[https://mymaps.usercontent.google.com/hostedimage/m/*/3AEDAZkqsZbCxsQE1sUFocqQo9sAT_fHUDGo4nZ_dauVeLtm12d7ZGKu1Ppy01jQyIKsyWz71lD4jN6ebT_yFVeV-_NQtOEu_6yoSH0Qz0s8smwXjrDvwDYR5vcuVRtp8WcZ9Aa5JtAf8uGbHYKRaN7InJByDId51YdxnJiWreMAx9Uc_Ijn6_hxZMNSmMWqAoGAtdxItOCG52RRQ?authuser=0&fife=s16383 https://mymaps.usercontent.google.com/hostedimage/m/*/3AEDAZkoes6wAjPoSlCmySD5O7BljwrjoOvgdNn_SxsfWqROfl-_OGX5enniLMOqPBRzs9I4yvG1LhAijjaomVnEvHwJYlU-Esn25jQl-ac0BKTyoOmD2sgNQ5y0ia49GJ362cYn0Z_6VeOZ9AqHSyXLoa-zKVcVjFqkmft1TDhL4LPu1TcrRLZfqq7Fz77hzd5dJH6b8pICYUehq10sKGim5Ni5rH9IXpLMUnwfysinuJ7maeOHjG1KBjuy1mzs?authuser=0&fife=s16383]]></value>
+        </Data>
+      </ExtendedData>
+      <Point>
+        <coordinates>-37.063042000000003,-10.9382666,0</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>
