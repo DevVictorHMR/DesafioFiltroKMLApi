@@ -6,21 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/placemarks")]
 public class PlacemarkControlador : ControllerBase
 {
-    private readonly KmlServico _kmlServico;
+    private readonly KmlService _kmlServico;
     private readonly IWebHostEnvironment _env;
-    private readonly IValidator<PlacemarkFiltro> _placemarkFiltroValidador;
+    private readonly IValidator<PlacemarkFilter> _placemarkFilterValidator;
 
-    public PlacemarkControlador(KmlServico kmlServico, IWebHostEnvironment env, IValidator<PlacemarkFiltro> placemarkFiltroValidador)
+    public PlacemarkControlador(KmlService kmlServico, IWebHostEnvironment env, IValidator<PlacemarkFilter> placemarkFilterValidator)
     {
         _kmlServico = kmlServico;
         _env = env;
-        _placemarkFiltroValidador = placemarkFiltroValidador;
+        _placemarkFilterValidator = placemarkFilterValidator;
     }
 
     [HttpGet]
-    public IActionResult GetPlacemarks([FromQuery] PlacemarkFiltro filtro)
+    public IActionResult GetPlacemarks([FromQuery] PlacemarkFilter filtro)
     {
-        var validationResult = _placemarkFiltroValidador.Validate(filtro);
+        var validationResult = _placemarkFilterValidator.Validate(filtro);
 
         if (!validationResult.IsValid)
         {
@@ -41,22 +41,22 @@ public class PlacemarkControlador : ControllerBase
     }
 
     [HttpPost("export")]
-    public async Task<IActionResult> ExportPlacemarksAsync([FromBody] PlacemarkFiltro filtro)
+    public async Task<IActionResult> ExportPlacemarksAsync([FromBody] PlacemarkFilter filter)
     {
-        var validationResult = _placemarkFiltroValidador.Validate(filtro);
+        var validationResult = _placemarkFilterValidator.Validate(filter);
         if (!validationResult.IsValid)
         {
             return BadRequest(validationResult.Errors);
         }
 
-        var filtroPlacemarks = _kmlServico.GetFilteredPlacemarks(filtro);
+        var filterPlacemarks = _kmlServico.GetFilteredPlacemarks(filter);
 
-        if (!filtroPlacemarks.Any())
+        if (!filterPlacemarks.Any())
         {
             return BadRequest(new { Error = "Nenhum placemark encontrado com os filtros aplicados." });
         }
 
-        var filePath = await _kmlServico.ExportFilteredPlacemarksAsync(filtroPlacemarks, _env);
+        var filePath = await _kmlServico.ExportFilteredPlacemarksAsync(filterPlacemarks, _env);
 
         return Ok(new { Message = "Arquivo exportado com sucesso.", FilePath = filePath });
     }

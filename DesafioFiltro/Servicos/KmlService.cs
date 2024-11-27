@@ -5,11 +5,11 @@ using SharpKml.Engine;
 using System.Collections.Concurrent;
 using Placemark = SharpKml.Dom.Placemark;
 
-public class KmlServico
+public class KmlService
 {
     private readonly List<Placemark> _placemarks;
 
-    public KmlServico(IWebHostEnvironment env)
+    public KmlService(IWebHostEnvironment env)
     {
         var kmlPath = Path.Combine(env.WebRootPath, "DIRECIONADORES1.kml");
         _placemarks = LoadKmlAsync(kmlPath).GetAwaiter().GetResult();
@@ -35,31 +35,31 @@ public class KmlServico
         return placemarks;
     }
 
-    public IEnumerable<Placemark> GetFilteredPlacemarks(PlacemarkFiltro filtro)
+    public IEnumerable<Placemark> GetFilteredPlacemarks(PlacemarkFilter filter)
     {
         return _placemarks.AsParallel().Where(p =>
-            (string.IsNullOrEmpty(filtro.Cliente) || GetExtendedDataValue(p, "CLIENTE") == filtro.Cliente) &&
-            (string.IsNullOrEmpty(filtro.Situacao) || GetExtendedDataValue(p, "SITUAÇÃO") == filtro.Situacao) &&
-            (string.IsNullOrEmpty(filtro.Bairro) || GetExtendedDataValue(p, "BAIRRO") == filtro.Bairro) &&
-            (string.IsNullOrEmpty(filtro.Referencia) || (filtro.Referencia.Length >= 3 && GetExtendedDataValue(p, "REFERENCIA")?.Contains(filtro.Referencia) == true)) &&
-            (string.IsNullOrEmpty(filtro.RuaCruzamento) || (filtro.RuaCruzamento.Length >= 3 && GetExtendedDataValue(p, "RUA/CRUZAMENTO")?.Contains(filtro.RuaCruzamento) == true))
+            (string.IsNullOrEmpty(filter.Cliente) || GetExtendedDataValue(p, "CLIENTE") == filter.Cliente) &&
+            (string.IsNullOrEmpty(filter.Situacao) || GetExtendedDataValue(p, "SITUAÇÃO") == filter.Situacao) &&
+            (string.IsNullOrEmpty(filter.Bairro) || GetExtendedDataValue(p, "BAIRRO") == filter.Bairro) &&
+            (string.IsNullOrEmpty(filter.Referencia) || (filter.Referencia.Length >= 3 && GetExtendedDataValue(p, "REFERENCIA")?.Contains(filter.Referencia) == true)) &&
+            (string.IsNullOrEmpty(filter.RuaCruzamento) || (filter.RuaCruzamento.Length >= 3 && GetExtendedDataValue(p, "RUA/CRUZAMENTO")?.Contains(filter.RuaCruzamento) == true))
         );
     }
 
-    public HashSet<string> GetDistinctFieldValues(string campoNome)
+    public HashSet<string> GetDistinctFieldValues(string nameCamp)
     {
         return _placemarks
-            .Select(p => GetExtendedDataValue(p, campoNome))
+            .Select(p => GetExtendedDataValue(p, nameCamp))
             .Where(value => value != null)
             .ToHashSet();
     }
 
-    private static string? GetExtendedDataValue(Placemark placemark, string campoNome)
+    private static string? GetExtendedDataValue(Placemark placemark, string nameCamp)
     {
         var extendedData = placemark.ExtendedData;
         if (extendedData == null) return null;
 
-        var data = extendedData.Data.FirstOrDefault(d => d.Name == campoNome);
+        var data = extendedData.Data.FirstOrDefault(d => d.Name == nameCamp);
         return data?.Value;
     }
 
@@ -81,7 +81,7 @@ public class KmlServico
         var serializer = new Serializer();
         serializer.Serialize(kml);
 
-        var nomeArquivo = $"KMLExportado_{DateTime.Now:yyyyMMdd}.kml";
+        var arquiveName = $"KMLExportado_{DateTime.Now:yyyyMMdd}.kml";
         var exportPath = Path.Combine(env.WebRootPath, "exports");
 
         if (!Directory.Exists(exportPath))
@@ -89,10 +89,10 @@ public class KmlServico
             Directory.CreateDirectory(exportPath);
         }
 
-        var filePath = Path.Combine(exportPath, nomeArquivo);
+        var filePath = Path.Combine(exportPath, arquiveName);
 
         await File.WriteAllTextAsync(filePath, serializer.Xml);
 
-        return $"/exports/{nomeArquivo}";
+        return $"/exports/{arquiveName}";
     }
 }

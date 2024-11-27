@@ -1,9 +1,9 @@
 ﻿using FiltroKMLApi.Models;
 using FluentValidation;
 
-public class PlacemarkFiltroValidador : AbstractValidator<PlacemarkFiltro>
+public class PlacemarkValidatorFilter : AbstractValidator<PlacemarkFilter>
 {
-    public PlacemarkFiltroValidador()
+    public PlacemarkValidatorFilter()
     {
         RuleFor(f => f.Referencia)
             .MinimumLength(3)

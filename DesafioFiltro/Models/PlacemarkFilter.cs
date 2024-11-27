@@ -1,6 +1,6 @@
 ﻿namespace FiltroKMLApi.Models
 {
-    public class PlacemarkFiltro
+    public class PlacemarkFilter
     {
         public string? Cliente { get; set; }
         public string? Situacao { get; set; }

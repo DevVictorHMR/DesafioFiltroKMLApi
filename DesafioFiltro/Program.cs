@@ -2,12 +2,12 @@ using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddValidatorsFromAssemblyContaining<PlacemarkFiltroValidador>();
+builder.Services.AddValidatorsFromAssemblyContaining<PlacemarkValidatorFilter>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<KmlServico>();
+builder.Services.AddSingleton<KmlService>();
 
 var app = builder.Build();
 
